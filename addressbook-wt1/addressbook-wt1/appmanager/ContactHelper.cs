@@ -28,5 +28,12 @@ namespace WebAddressbookTests
         {
             driver.FindElement(By.XPath("//div[@id='content']/form/input[20]")).Click();
         }
+
+        internal void Create(ContactData contact)
+        {
+            manager.Navigator.GoToContactsPage();
+            FillContactCReation(contact);
+            SubmitContactCreation();
+        }
     }
 }
