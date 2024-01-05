@@ -14,19 +14,27 @@ namespace WebAddressbookTests
         private string name;
         private string header = "";
         private string footer = "";
+        private string group = "";
+
+        public GroupData(string name)
+        {
+            this.name = name;
+            
+        }
 
         public GroupData(string name, string header, string footer)
         {
             this.name = name;
             this.header = header;
             this.footer = footer;
+            
         }
         public string Name
         {
             get
             { return name; }
             set
-            {  name = value; }
+            { name = value; }
         }
         public string Header
         {
@@ -35,12 +43,13 @@ namespace WebAddressbookTests
             set { header = value; }
         }
         public string Footer
-        { 
-            get 
+        {
+            get
             { return footer; }
-            set 
+            set
             { footer = value; }
         }
         
     }
+        
 }

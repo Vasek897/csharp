@@ -1,21 +1,22 @@
 ﻿using NUnit.Framework;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+
 
 
 namespace WebAddressbookTests
 {
-    public class LoginHelper
+    public class LoginHelper : HelperBase
     {
-        private IWebDriver driver;
-        public LoginHelper(IWebDriver driver) {
-            this.driver = driver;
+        public LoginHelper(ApplicationManager manager) : base (manager)
+        {
         }
         public void Login(AccountData account)
         {
@@ -25,7 +26,7 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("pass")).SendKeys(account.Password);
             driver.FindElement(By.XPath("//input[@value='Login']")).Click();
         }
-        private void Logout()
+        public void Logout()
         {
             driver.FindElement(By.LinkText("Logout")).Click();
         }
