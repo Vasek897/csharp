@@ -21,14 +21,17 @@ namespace WebAddressbookTests
             group.Footer = "FFF";
 
             app.Groups.Create(group);
-            GroupHelper.FillGroupForm(group);
             app.Auth.Logout();
         }
         public void EmptyGroupCreationTest()
         {
-            GroupHelper.FillGroupForm(new GroupData("", "", ""));
-
             app.Navigator.GoToGroupsPage();
+
+            GroupData group = new GroupData(" ");
+            group.Header = " ";
+            group.Footer = " ";
+
+            app.Groups.Create(group);
             app.Auth.Logout();
         }
 
