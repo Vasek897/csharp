@@ -6,20 +6,19 @@ using System.Text;
 using System.Threading.Tasks;
 using WebAddressbookTests;
 
-namespace aWebAddressbookTests
+namespace WebAddressbookTests
 {
     public class ContactModificationTest : TestBase
     {
 
         [Test]
-        public void СontactCreationTests()
+        public void ContactModificationTes()
         {
-            ContactData contact = new ContactData("Иван");
-            contact.Middlename = "Иванович";
-            contact.Lastname = "Иванов";
+            ContactData contact = new ContactData("Петр");
+            contact.Middlename = "Петров";
+            contact.Lastname = "Петрович";
 
-            app.Contacts.Create(contact);
-            app.Auth.Logout();
+            app.Contacts.Modify(1, contact);
         }
     }
 }

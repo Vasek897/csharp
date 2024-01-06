@@ -54,5 +54,5 @@ namespace WebAddressbookTests
         public ContactHelper Contacts
         { get { return contactHelper; } }
 
-        }
+    }
 }

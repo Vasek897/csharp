@@ -11,7 +11,7 @@ namespace WebAddressbookTests
     public class ContactCreationTests : TestBase
     {
         [Test]
-        public void СontactCreationTests()
+        public void ContactCreationTest()
         {
             ContactData contact = new ContactData("Иван");
             contact.Middlename = "Иванович";
