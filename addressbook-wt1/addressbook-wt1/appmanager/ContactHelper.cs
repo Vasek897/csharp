@@ -15,7 +15,7 @@ namespace WebAddressbookTests
         public ContactHelper(ApplicationManager manager) : base(manager)
         {
         }       
-        public void FillContactCReation(ContactData contact)
+        public ContactHelper FillContactCReation(ContactData contact)
         {
             driver.FindElement(By.Name("firstname")).Clear();
             driver.FindElement(By.Name("firstname")).SendKeys(contact.Firstname);
@@ -23,17 +23,41 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("middlename")).SendKeys(contact.Middlename);
             driver.FindElement(By.Name("lastname")).Clear();
             driver.FindElement(By.Name("lastname")).SendKeys(contact.Lastname);
+            return this;
         }
-        public void SubmitContactCreation()
+        public ContactHelper SubmitContactCreation()
         {
             driver.FindElement(By.XPath("//div[@id='content']/form/input[20]")).Click();
+            return this;
         }
 
-        internal void Create(ContactData contact)
+        public ContactHelper Create(ContactData contact)
         {
             manager.Navigator.GoToContactsPage();
             FillContactCReation(contact);
             SubmitContactCreation();
+            return this;
+        }
+
+
+        public ContactHelper SelectContact(int index)
+
+        {
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            return this;
+        }
+        public ContactHelper RemoveContact()
+        {
+            driver.FindElement(By.Name("Delete")).Click();
+            return this;
+        }
+        public ContactHelper Remove(int p)
+        {
+            manager.Navigator.GoToHomePage();
+
+            SelectContact(p);
+            RemoveContact();
+            return this;
         }
     }
 }
