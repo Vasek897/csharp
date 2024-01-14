@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography.X509Certificates;
 using OpenQA.Selenium.Support.UI;
+using System.Threading;
+using System.Linq.Expressions;
 
 namespace WebAddressbookTests
 {
@@ -20,7 +22,9 @@ namespace WebAddressbookTests
         protected GroupHelper groupHelper;
         protected ContactHelper contactHelper;
 
-        public ApplicationManager()
+        private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
+
+        private ApplicationManager()
         {
             driver = new ChromeDriver();
             baseURL = "http://localhost/addressbook";
@@ -30,11 +34,7 @@ namespace WebAddressbookTests
             groupHelper = new GroupHelper(this);
             contactHelper = new ContactHelper(this);
         }
-        public IWebDriver Driver 
-            {
-            get { return driver; }
-            }
-        public void Stop()
+        ~ApplicationManager()
         {
             try
             {
@@ -45,6 +45,23 @@ namespace WebAddressbookTests
                 // Ignore errors if unable to close the browser
             }
         }
+        public static ApplicationManager GetInstance()
+        {
+            if (! app.IsValueCreated)
+            {
+                ApplicationManager newInstance = new ApplicationManager();
+                app.Value = newInstance;
+                newInstance.Navigator.OpenHomePage();
+            }
+            return app.Value;
+        }
+        public IWebDriver Driver 
+            {
+            get { return driver; }
+            }
+        
+        
+        
         public LoginHelper Auth
         { get { return loginHelper; } }
         public NavigationHelper Navigator

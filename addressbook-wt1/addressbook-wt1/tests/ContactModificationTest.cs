@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using WebAddressbookTests;
 
 namespace WebAddressbookTests
 {
-    public class ContactModificationTest : TestBase
+    public class ContactModificationTest : AuthTestBase
     {
 
         [Test]
