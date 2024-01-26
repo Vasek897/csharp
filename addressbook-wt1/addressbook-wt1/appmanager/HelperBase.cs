@@ -36,7 +36,7 @@ namespace WebAddressbookTests
                 driver.FindElement(by);
                 return true;
             }
-            catch (NoSuchDriverException)
+            catch (NoSuchElementException)
             {
                 return false;
             }
