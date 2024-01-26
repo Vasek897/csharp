@@ -19,7 +19,16 @@ namespace WebAddressbookTests
             contact.Lastname = "Иванов";
 
             app.Contacts.Create(contact);
-            app.Auth.Logout();
+            
+        }
+        [Test]
+        public void EmptyContactCreationTest()
+        {
+            ContactData contact = new ContactData(" ");
+            contact.Middlename = " ";
+            contact.Lastname = " ";
+
+            app.Contacts.Create(contact);
         }
     }          
 }
